@@ -4,4 +4,4 @@
 <img src="https://github.com/geekspark-cdn/deal-a-wheel/blob/main/img/logo.png" />
 <br>
 <br>
-## 🚩 Contribution is accepted
+🚩 Contribution is accepted
