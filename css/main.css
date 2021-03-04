@@ -14,6 +14,27 @@ body {
   color:#777;
 background-color: #ddd;}
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+.card img {
+  border-radius: 5px 5px 0 0;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
+
+/* Add some padding inside the card container */
+ .card .container {
+  padding: 2px 16px;
+}
+
 .container {
   max-width:400px;
   width:100%;
@@ -159,7 +180,7 @@ a{
 
 .header-right {
   float: right;
-  padding-top: 2%;
+  margin-top: 2%;
 }
 
 
