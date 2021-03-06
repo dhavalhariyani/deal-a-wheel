@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Deal-A-Wheel</title>
+    <link rel="icon" href="logo-only.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <style type="text/css">
@@ -67,6 +68,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact Us</a>
+    <a href="admin"><i class="fa fa-user-circle"></i></a>
   </div>
 </div>
     
@@ -98,7 +100,7 @@
 
           &nbsp;&nbsp;&nbsp;&nbsp;
 
-          <label for="transmission_type">Trabsmission Type : </label>
+          <label for="transmission_type">Transmission Type : </label>
       <select name="transmission_type">
         <option value="manual">Manual</option>
         <option value="auto">Automatic</option>
