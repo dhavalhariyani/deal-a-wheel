@@ -63,9 +63,9 @@
   <body>
 
 <div class="header">
-  <a href="index.html"><img src="img/logo_header.png"></a>
+  <a href="index.php"><img src="img/logo_header.png"></a>
   <div class="header-right">
-    <a href="index.html">Home</a>
+    <a href="index.php">Home</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact Us</a>
     <a href="admin"><i class="fa fa-user-circle"></i></a>
@@ -264,7 +264,7 @@
     </div>
     <div class="three-column">
       <ul style="list-style-type:none;">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
       </ul>
