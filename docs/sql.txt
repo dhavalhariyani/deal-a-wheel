@@ -1,0 +1,8 @@
+CREATE TABLE `login_user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+);
+
+INSERT INTO `login_user` (`id`, `name`, `user_name`, `password`) VALUES ('1', 'Admin', 'admin', 'pass');
