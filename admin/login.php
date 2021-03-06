@@ -55,7 +55,7 @@
 </div>
 <br>
 <div class="container">  
-  <form id="contact" action="" method="post">
+  <form id="contact" action="" method="post" enctype="multipart/form-data">
     <h3>Login</h3><br>
     <h4><div class="message"><?php if($message!="") { echo $message; } ?></div>
 </h4>

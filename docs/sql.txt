@@ -6,3 +6,5 @@ CREATE TABLE `login_user` (
 );
 
 INSERT INTO `login_user` (`id`, `name`, `user_name`, `password`) VALUES ('1', 'Admin', 'admin', 'pass');
+
+CREATE TABLE cars( cid INT(11) AUTO_INCREMENT PRIMARY KEY, car_name varchar(255), car_brand varchar(255), fuel_type varchar(255), transmission_type varchar(255), seating_capacity varchar(255), luggage_capacity varchar(255), car_img varchar(255) );

@@ -70,39 +70,52 @@
 
   <div class="two-column" style="width: 60%;">
     <center><h3>Book A Ride</h3></center>
-    <form id="booking">
-        <input type="radio" id="oneway" name="trip_type" value="oneway">
-        <label for="oneway">One Way</label>
-        <input type="radio" id="round" name="trip_type" value="round">
-        <label for="round">Round Trip</label>
+    <form id="booking" action="booking.php" method="post">
 
-          <br><br>
-
-        <label for="pickup_location">Pickup Location</label>
-          <input type="type" name="pickup_location">
+        <label for="city">City</label>
+          <input type="text" name="city">
           &nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="dropoff_location">Drop Off Location</label>
-          <input type="type" name="dropoff_location">
-          &nbsp;&nbsp;&nbsp;&nbsp;
+        
         <br><br>
-        <label for="pickup_date">Pickup Date</label>
+        <label for="pickup_date">Start Date</label>
           <input type="datetime-local" name="pickup_date">
           &nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="return_date">Return Date</label>
+        <label for="return_date">End Date</label>
           <input type="datetime-local" name="return_date">
           &nbsp;&nbsp;&nbsp;&nbsp;
         <br><br>
-        <label for="car_type">Car Type</label>
-          <select name="car_type">
-            <option>Sedan</option>
-            <option>Hatchback</option>
-            <option>Minivan</option>
-            <option>SUV</option>
-            <option>Convertible</option>
+         <label for="fuel_type">Fuel Type : </label>
+            <select name="fuel_type">
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
+              <option value="gas">Gas</option>
+            </select>
+
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <label for="transmission_type">Trabsmission Type : </label>
+      <select name="transmission_type">
+        <option value="manual">Manual</option>
+        <option value="auto">Automatic</option>
+      </select>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <label for="seats">Seating Capacity</label>
+          <select name="seats">
+            <option>4</option>
+            <option>5</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>12</option>
           </select>
-        <br><br>
-        <center>        
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Continue</button>
+
+
+        <center>      
+        <br>  
+          <button name="submit" type="submit" id="contact-submit" >Continue</button>
         </center>
 
       </form>
@@ -117,21 +130,36 @@
         <div class="slideshow-container">
 
             <div class="mySlides fade">
-              <img src="img/car1.jpg" style="width:75%">
-            </div>
+    <img src="img/car (1).png" style="width:75%">
+</div>
 
-            <div class="mySlides fade">
-              <img src="img/car2.jpg" style="width:75%">
-            </div>
+<div class="mySlides fade">
+    <img src="img/car (2).png" style="width:75%">
+</div>
 
-            <div class="mySlides fade">
-              <img src="img/car3.jpg" style="width:75%">
-            </div>
+<div class="mySlides fade">
+    <img src="img/car (3).png" style="width:75%">
+</div>
+
+<div class="mySlides fade">
+    <img src="img/car (4).png" style="width:75%">
+</div>
+
+<div class="mySlides fade">
+    <img src="img/car (5).png" style="width:75%">
+</div>
+
+<div class="mySlides fade">
+    <img src="img/car (6).png" style="width:75%">
+</div>                       
 
           </div>
             <br>
 
             <div style="text-align:center">
+              <span class="dot"></span> 
+              <span class="dot"></span> 
+              <span class="dot"></span>
               <span class="dot"></span> 
               <span class="dot"></span> 
               <span class="dot"></span> 
