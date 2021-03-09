@@ -2,42 +2,76 @@
 
 session_start();
 
-$f = 0;
 
 include_once("admin/db_conn.php");
 
+include_once("mail.php");
 
-$cid = $_POST['cid'];
-$amount = $_POST['amount'];
-$d1 = $_POST['d1'];
-$d2 = $_POST['d2'];
-$city = $_POST['city'];
-$hours = $_POST['hours'];
+$bid = $_SESSION['booking_id'];
+
+
+
+$qr = "SELECT * FROM bookings WHERE bid = '$bid' ";
+$quariy = $db->query($qr);
+while ( $row = mysqli_fetch_array($quariy) ) :
+  $uid = $row['uid'];
+  $cid = $row['cid'];
+  $city = $row['city'];
+  $booking_from = $row['booking_from'];
+  $booking_to = $row['booking_to'];
+  $total_hours = $row['total_hours'];
+  $amount = $row['amount'];
+endwhile;
 
 $qr = "SELECT * FROM cars WHERE cid = '$cid' ";
+$quariy = $db->query($qr);
+while ( $row = mysqli_fetch_array($quariy) ) :
+  $car_name = $row['car_name'];
+  $car_brand = $row['car_brand'];
+  $fuel_type = $row['fuel_type'];
+  $transmission_type = $row['transmission_type'];
+  $seating_capacity = $row['seating_capacity'];
+  $luggage_capacity = $row['luggage_capacity'];
+  $price_per_hr = $row['price_per_hr'];
+  $car_img = $row['car_img'];
+endwhile;
+
+$qr = "SELECT * FROM users WHERE uid = '$uid' ";
+$quariy = $db->query($qr);
+while ( $row = mysqli_fetch_array($quariy) ) :
+  $user_name = $row['user_name'];
+  $user_email = $row['user_email'];
+  $user_number = $row['user_number'];
+endwhile;
 
 
 
 
 
-$msg = "";
 
 
 
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-
+          <script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>
+  <script src="http://eray.info/demo/html-to-jpeg-php/js/html2canvas.js"></script>
         <style type="text/css">
+
+        	@media print {
+				   div.header {
+				     display:none;
+				   }
+				}
 
           span{
             background-color: #e7e6e1;
@@ -53,7 +87,7 @@ input{
       box-sizing: border-box;
    }
           
-          .card {
+          .carcard {
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             margin: 0.8%;
@@ -62,6 +96,17 @@ input{
             padding: 8px;
             border-radius: 10px;
             max-width: 450px;
+
+          }
+          .detailcard{
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 0.8%;
+            text-align: center;
+            float: left;
+            padding: 8px;
+            border-radius: 10px;
+            width: 500px;
 
           }
 
@@ -127,7 +172,7 @@ button:hover, a:hover {
 }
         </style>
 
-    <title>Car Booking</title>
+    <title>Booking Successfull!</title>
   </head>
   <body>
 
@@ -135,95 +180,92 @@ button:hover, a:hover {
   <a href="index.php"><img src="img/logo_header.png"></a>
   <div class="header-right">
     <a href="index.php">Home</a>
-    <?php
-        if(isset($_SESSION["name"])) {
-            echo "<a href='logout.php'>Logout</a>";
-        }
-        else{
-            echo "<a href='login.php'>Login</a>";
-        }
-      
-        ?>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="admin"><i class="fa fa-user-circle"></i></a>
   </div>
 </div>
 <br>
+<section style="text-align: center;">  
+	<div style="margin: 1rem; ">
+	<?php
 
+	if (isset($_POST['submit'])) {
+		$uid = $_POST['uid'];
+		$uemail = $_POST['uemail'];
+
+
+
+		$sql = "SELECT * FROM otps WHERE uid = '$uid'";
+		$result = mysqli_query($db, $sql) or die( mysqli_error($db));
+
+    	while ( $row = mysqli_fetch_array($result) ) :
+
+			$otp = $row['otp'];
+			//echo "User ID is : ".$uid;
+
+		endwhile;
+    if ($_POST['userotp'] == $otp) {
+        
+?>
+<section>
+  <h3>Thank You For Using Our Services !</h3> <br>
+  <h2>This Is Your Booking Details!</h2>
+</section>
+<?php
+
+
+    
+?>
 <section style="background-color: #eee;">
 <div style="padding:1%;">
 
 
-  
-  
-<?php
-$quariy = $db->query($qr);
-
-
-
-while ( $row = mysqli_fetch_array($quariy) ) :
-$f = 1;
-?>
-
-
 <div class="row">
     
-    <div class="three-column">
+    <div class="two-column">
         <div class="cardContainer">
-          <div class="card">
-            <img src="<?php echo 'admin/images/'.$row['car_img']?>" style="width:75%;">
+          <div class="carcard">
+            <img src="<?php echo 'admin/images/'.$car_img?>" style="width:75%;">
             
-            <h2><?php echo $row['car_brand']?></h2>
-            <h1><?php echo $row['car_name']?></h1>
+            <h2><?php echo $car_brand;?></h2>
+            <h1><?php echo $car_name;?></h1>
             <h4>
-              Fuel Type : <?php echo $row['fuel_type']?><br>
-              Transmission Type : <?php echo $row['transmission_type']?><br>
-              Seating Capacity : <?php echo $row['seating_capacity']?><br>
-              Luggage Capacity : <?php echo $row['luggage_capacity']?><br>
+              Fuel Type : <?php echo $fuel_type;?><br>
+              Transmission Type : <?php echo $transmission_type;?><br>
+              Seating Capacity : <?php echo $seating_capacity;?><br>
+              Luggage Capacity : <?php echo $luggage_capacity;?><br>
               City: <?php echo $city; ?><br>
-              Booking From: <?php echo $d1; ?><br>
-              To: <?php echo $d2; ?><br>
+              Booking From: <?php echo $booking_from; ?><br>
+              To: <?php echo $booking_to; ?><br>
             </h4>
            </div>
         </div>
     </div>
 
-    <div class="three-column">
-         <div class="cardContainer">
-              <div class="card">  
-                <h3>Enter Your Details!</h3>
-                <h4></h4>
-                <form action="verification.php" method="POST"> 
-                  <input name="uname" placeholder="Your name" type="text" required autofocus>
-                  <input name="uemail" placeholder="Your Email Address" type="email" required>
-                  <input name="uphone" placeholder="Your Phone Number" type="tel" required>
-                  <input name="upass" placeholder="Create A Password" type="password" required>
-
-
-                  <input type="hidden" name="cid" value="<?php echo $row['cid'] ?>" />
-                  <input type="hidden" name="amount" value="<?php echo ceil($hours * $row['price_per_hr'])?>" />
-                  <input type="hidden" name="d1" value="<?php echo $d1 ?>" />
-                  <input type="hidden" name="d2" value="<?php echo $d2 ?>" />
-                  <input type="hidden" name="hours" value="<?php echo $hours ?>" />
-                  <input type="hidden" name="city" value="<?php echo $city ?>" />
-
-        
-                    <button name="submit" type="submit" id="contact-submit">Submit</button>
-                  </form>
-            </div>
-          </div>
-    </div>
-
-     <div class="three-column" >
+     <div class="two-column" >
       <div class="cardContainer" >
-      <div class="card">
+      <div class="detailcard">
         <h4 >
-          <table style="  font-size:13px;" >
+          <table style="  font-size:13px; text-align: left;" >
+          	<td style="font-weight: bold;">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $user_name; ?></td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold;">Customer E-mail&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $user_email;?></td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold;">Customer Number&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $user_number?><br></td>
+            </tr>        
             <tr>
               <td style="font-weight: bold;">Total Hours&nbsp;&nbsp;&nbsp;&nbsp;</td>
-              <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $hours ?></td>
+              <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $total_hours; ?></td>
             </tr>
             <tr>
               <td style="font-weight: bold;">Price Per Hour&nbsp;&nbsp;&nbsp;&nbsp;</td>
-              <td>: &nbsp;&nbsp;&nbsp;&nbsp;₹<?php echo $row['price_per_hr']?></td>
+              <td>: &nbsp;&nbsp;&nbsp;&nbsp;₹<?php echo $price_per_hr;?></td>
             </tr>
             <tr>
               <td style="font-weight: bold;">Total Amount&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -249,9 +291,7 @@ $f = 1;
     </div>
 </div>
 
-<?php
-endwhile;
-?>
+
 
 </section>
 <div class="cardContainer">
@@ -292,7 +332,19 @@ endwhile;
     </table>
   </div>
 </div>
-</body>
+<?php
+}
+     
+}
 
+else
+	echo "<h2> Booking Not Done.</h2>";
+
+?>
+</div>
+</section>
+ 
+
+  </body>
 </html>
 

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +76,7 @@
 
   <div class="two-column" style="width: 60%;">
     <center><h3>Book A Ride</h3></center>
-    <form id="booking" action="booking.php" method="post">
+    <form id="booking" action="show_cars.php" method="post">
 
         <label for="city">City</label>
           <input type="text" name="city">
