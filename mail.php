@@ -1,11 +1,11 @@
 <?php
 // PHPMailer classes into the global namespace
-use PHPMailer\PHPMailer\PHPMailer; 
-use PHPMailer\PHPMailer\Exception;
+use phpmailer\phpmailer\PHPMailer; 
+use phpmailer\phpmailer\Exception;
 // Base files 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 // create object of PHPMailer class with boolean parameter which sets/unsets exception.
 function sendOPT($email, $otp){
 
