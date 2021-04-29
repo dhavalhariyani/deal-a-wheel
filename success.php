@@ -176,15 +176,10 @@ button:hover, a:hover {
   </head>
   <body>
 
-<div class="header">
-  <a href="index.php"><img src="img/logo_header.png"></a>
-  <div class="header-right">
-    <a href="index.php">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="admin"><i class="fa fa-user-circle"></i></a>
-  </div>
-</div>
+<?php
+include("header.php");
+?>
+
 <br>
 <section style="text-align: center;">  
 	<div style="margin: 1rem; ">
@@ -346,5 +341,8 @@ else
  
 
   </body>
+<footer>  <?php
+    include("footer.php");
+  ?></footer>
 </html>
 

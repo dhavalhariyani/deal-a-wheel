@@ -133,21 +133,9 @@ button:hover, a:hover {
   </head>
   <body>
 
-<div class="header">
-  <a href="index.php"><img src="img/logo_header.png"></a>
-  <div class="header-right">
-    <a href="index.php">Home</a>
-    <?php
-        if(isset($_SESSION["name"])) {
-            echo "<a href='logout.php'>Logout</a>";
-        }
-        else{
-            echo "<a href='login.php'>Login</a>";
-        }
-      
-        ?>
-  </div>
-</div>
+<?php
+include("header.php");
+?>
 <br>
 
 <section style="background-color: #eee;">
@@ -222,6 +210,8 @@ endwhile;
 ?>
 
   </body>
-
+<footer>  <?php
+    include("footer.php");
+  ?></footer>
 </html>
 
