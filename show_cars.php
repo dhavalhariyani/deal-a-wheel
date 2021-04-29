@@ -11,7 +11,7 @@ if(!isset($_POST["city"])) {
             
 }
 
-include_once("admin/db_conn.php");
+include_once("db_conn.php");
 
 $d1= $_POST['pickup_date'];
 $d2= $_POST['return_date'];

@@ -3,7 +3,7 @@
 session_start();
 
 
-include_once("admin/db_conn.php");
+include_once("db_conn.php");
 
 include_once("mail.php");
 
