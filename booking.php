@@ -4,7 +4,7 @@ session_start();
 
 $f = 0;
 
-include_once("admin/db_conn.php");
+include_once("db_conn.php");
 
 
 $cid = $_POST['cid'];
