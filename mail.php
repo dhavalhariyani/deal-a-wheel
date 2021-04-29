@@ -11,7 +11,7 @@ function sendOPT($email, $otp){
 
     $mail = new PHPMailer(true);                              
     try {
-        $mail->isSMTP(); // using SMTP protocol                                     
+        //$mail->isSMTP(); // using SMTP protocol                                     
         $mail->Host = 'smtp.gmail.com'; // SMTP host as gmail 
         $mail->SMTPAuth = true;  // enable smtp authentication                             
         $mail->Username = 'dhavvu6@gmail.com';  // sender gmail host              
