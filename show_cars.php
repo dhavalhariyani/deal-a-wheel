@@ -6,10 +6,11 @@ $f = 0;
 
 
 if(!isset($_POST["city"])) {
-
+  echo '<script>alert("Please Enter City Name!")</script>';
   header("Location:index.php");
             
 }
+
 include_once("admin/db_conn.php");
 
 $d1= $_POST['pickup_date'];
@@ -22,14 +23,18 @@ $transmission_type = $_POST['transmission_type'];
 $seats = $_POST['seats'];
 
 $seconds = strtotime($d2) - strtotime($d1);
+
+
+
+$qr = "SELECT * FROM cars WHERE fuel_type = '$fuel_type' AND transmission_type = '$transmission_type' AND seating_capacity = '$seats' AND availability = '1'";
+
+
 $hours = floor($seconds / 60 / 60);
 
-
-$qr = "SELECT * FROM cars WHERE fuel_type = '$fuel_type' AND transmission_type = '$transmission_type' AND seating_capacity = '$seats' ";
-
-
-
-
+if ($hours<0) {
+  echo '<script>alert("Please Select Proper Dates!")</script>';
+  header("Location:index.php");
+}
 
 $msg = "";
 

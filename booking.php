@@ -16,6 +16,19 @@ $hours = $_POST['hours'];
 
 $qr = "SELECT * FROM cars WHERE cid = '$cid' ";
 
+if ($_SESSION["id"]) 
+{
+  $tid = $_SESSION['id'];
+
+  $qr1t = "SELECT * FROM users WHERE uid = '$tid' ";
+  $qr1 = $db->query($qr1t);
+
+  while ( $row = mysqli_fetch_array($qr1) ) :
+    $username = $row["user_name"];
+    $useremail = $row["user_email"];
+    $usernumber = $row["user_number"];
+  endwhile;
+}
 
 
 
@@ -189,14 +202,55 @@ $f = 1;
     <div class="three-column">
          <div class="cardContainer">
               <div class="card">  
-                <h3>Enter Your Details!</h3>
+                 <?php
+
+                  if (!$_SESSION["id"]) {
+                     echo "<h3>Enter Your Details!</h3>";}
+                     else
+                      echo "<h3>Your Details!</h3>";
+                  ?>
+
+                
+
                 <h4></h4>
                 <form action="verification.php" method="POST"> 
+                  <?php
+
+                  if (!$_SESSION["id"]) {
+
+                  ?>
+                  
                   <input name="uname" placeholder="Your name" type="text" required autofocus>
                   <input name="uemail" placeholder="Your Email Address" type="email" required>
                   <input name="uphone" placeholder="Your Phone Number" type="tel" required>
                   <input name="upass" placeholder="Create A Password" type="password" required>
 
+                  <?php
+                }
+                else{
+
+                        echo "
+
+                        <table>
+                          <tr>
+                            <td style='font-weight: bold; text-align: left;'>Name&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>:&nbsp;&nbsp;&nbsp;&nbsp;$username</td>
+                          </tr>
+                          <tr>
+                            <td style='font-weight: bold; text-align: left;'>Email&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>:&nbsp;&nbsp;&nbsp;&nbsp;$useremail</td>
+                          </tr>
+                          <tr>
+                            <td style='font-weight: bold; text-align: left;'>Number&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>:&nbsp;&nbsp;&nbsp;&nbsp;$usernumber</td>
+                          </tr>
+                        </table>
+
+
+                        ";
+
+                }
+                ?>
 
                   <input type="hidden" name="cid" value="<?php echo $row['cid'] ?>" />
                   <input type="hidden" name="amount" value="<?php echo ceil($hours * $row['price_per_hr'])?>" />
@@ -218,27 +272,27 @@ $f = 1;
         <h4 >
           <table style="  font-size:13px;" >
             <tr>
-              <td style="font-weight: bold;">Total Hours&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">Total Hours&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $hours ?></td>
             </tr>
             <tr>
-              <td style="font-weight: bold;">Price Per Hour&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">Price Per Hour&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;₹<?php echo $row['price_per_hr']?></td>
             </tr>
             <tr>
-              <td style="font-weight: bold;">Total Amount&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">Total Amount&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;₹<?php echo $amount?><br></td>
             </tr>            
             <tr>
-              <td style="font-weight: bold;">Extra kms charge&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">Extra kms charge&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;₹9/km</td>
             </tr>
             <tr>
-              <td style="font-weight: bold;">Fuel&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">Fuel&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;Excluded</td>
             </tr>
             <tr>
-              <td style="font-weight: bold;">All Other Taxes&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td style="font-weight: bold; text-align: left;">All Other Taxes&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>: &nbsp;&nbsp;&nbsp;&nbsp;To be paid by you</td>
             </tr>
           </table>

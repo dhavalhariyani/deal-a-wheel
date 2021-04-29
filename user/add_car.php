@@ -85,8 +85,8 @@ if (isset($_POST["submit"])) {
 		  {
 		  	  
 			
-		  	$query = "INSERT INTO cars (car_name,car_brand,fuel_type,transmission_type,seating_capacity,luggage_capacity,price_per_hr,car_img,availability) ".
-        "VALUES ('$car_name','$car_brand','$fuel_type','$transmission_type','$seating_capacity','$luggage_capacity','$pph','$dpname','1')";
+		  	$query = "INSERT INTO cars (car_name,car_brand,fuel_type,transmission_type,seating_capacity,luggage_capacity,price_per_hr,car_img) ".
+        "VALUES ('$car_name','$car_brand','$fuel_type','$transmission_type','$seating_capacity','$luggage_capacity','$pph','$dpname')";
 
              $db->query($query) or die('Error1, query failed');	
 			 

@@ -30,7 +30,7 @@ session_start();
 			.btn:active { box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.5); }
 
         </style>
-    <title>Admin</title>
+    <title>User</title>
   </head>
   <body>
 
@@ -44,6 +44,7 @@ session_start();
         }
         else{
             echo "<a href='login.php'>Login</a>";
+            echo "<a href='registration.php'>Register</a>";
         }
       
         ?>
@@ -55,16 +56,18 @@ session_start();
   <?php
 if(isset($_SESSION["name"])) {
 ?>
-<center>Welcome <?php echo $_SESSION["name"]; ?>.
+
+  <center><b>Welcome <?php echo $_SESSION["name"]; ?></b>
+
+    <br><br>
+
+    <a href="bookings_display.php"><button class="btn">View Bookings</button></a>
+  
+
 		
 
-		<br><br>
-
-		<a href="add_car.php"><button class="btn">Add New Car</button></a>
-    <a href="cars_display.php"><button class="btn">View All Cars</button></a>
-    <a href="bookings_display.php"><button class="btn">View All Bookings</button></a>
 <?php
-}else echo "<h2>Please <a href='login.php'>Login</a> First.</h2>";
+}else echo "<h2>Please <a href='login.php'>Login</a> or <a href='registration.php'>Register</a></h2>";
 ?>
  
 </center>

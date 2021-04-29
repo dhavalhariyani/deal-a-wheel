@@ -62,15 +62,10 @@ session_start();
   </head>
   <body>
 
-<div class="header">
-  <a href="index.php"><img src="img/logo_header.png"></a>
-  <div class="header-right">
-    <a href="index.php">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="admin"><i class="fa fa-user-circle"></i></a>
-  </div>
-</div>
+<?php
+include("header.php");
+?>
+
     
 <section class="row">
 
@@ -255,27 +250,9 @@ session_start();
 </section>
 
 <footer>
-  <div class="row">
-    <div class="three-column">
-      <img src="img/logo_main.png" style="height: 75%; width: 75%;">
-
-<br><br>
-
-    </div>
-    <div class="three-column">
-      <ul style="list-style-type:none;">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="three-column">
-      <h4>Have A Question?<br>
-        <a href="contact.html">24/7 Customer Support</a><br>
-        +91-0000000000<br>
-        ask@deal-a-wheel.com
-    </div>
-  </div>
+  <?php
+    include("footer.php");
+  ?>
 
 </footer>
 

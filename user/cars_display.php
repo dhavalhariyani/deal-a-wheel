@@ -70,11 +70,15 @@ div{
 
 
 button {
+  border: none;
+  outline: 0;
+  display: inline-block;
   padding: 8px;
   color: white;
   background-color: #000;
+  text-align: center;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   font-size: 18px;
 }
 
@@ -126,27 +130,8 @@ while ( $row = mysqli_fetch_array($quariy) ) :
         Transmission Type : <?php echo $row['transmission_type']?><br>
         Seating Capacity : <?php echo $row['seating_capacity']?><br>
         Luggage Capacity : <?php echo $row['luggage_capacity']?><br>
-        Price/Hr : <?php echo $row['price_per_hr']?><br>
-        Availability : <?php if($row['availability']) echo "Available"; else echo "Unavailable";?><br>
-
-        <button name="modifycar" onclick="javascript:location.href='modify_car.php?id=<?php echo $row['cid']?>';" value="Modify">Modify</button>
-
-
-        <?php
-          if ($row['availability']) {
-        ?>
-            <button name="makeunavailable" onclick="javascript:location.href='action.php?id=<?php echo $row['cid']?>&action=makeunavailable';" value="Hide">Hide</button>
-
-          <?php
-          }
-          else{
-            ?> 
-          
-          <button name="makeavailable" onclick="javascript:location.href='action.php?id=<?php echo $row['cid']?>&action=makeavailable';" value="Hide">Show</button>
-<?php
-          }
-        ?>
-
+        Price/Hr : <?php echo $row['price_per_hr']?>
+      </h4>
       
     </div>
 

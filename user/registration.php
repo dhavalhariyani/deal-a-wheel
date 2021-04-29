@@ -3,20 +3,35 @@
     $message="";
 
     if(isset($_POST['submit'])) {
+
+
         include_once("db_conn.php");
-        $result = mysqli_query($db,"SELECT * FROM login_user WHERE user_name='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+        $result = mysqli_query($db,"SELECT * FROM users WHERE user_name='" . $_POST["username"] . "' or user_email = '". $_POST["email"]."'");
         $row  = mysqli_fetch_array($result);
         if(is_array($row)) {
-        $_SESSION["id"] = $row['id'];
-        $_SESSION["name"] = $row['name'];
+          $message = "User Already Exist, Please <a href='login.php'>Login</a>!";
         } 
         else {
-         $message = "Invalid Username or Password!";
+
+         $result = mysqli_query($db,"insert into users (user_name,user_email,user_number,user_pass) values( '" 
+          . $_POST["username"] . "','" 
+          . $_POST["email"]. "','"
+          . $_POST["phonenumber"]. "','"
+          . $_POST["password"]. "')"
+        );
+
+         if ($result) {
+           $message = "Registration Successfull!";
+         }
+         else{
+          $message = "Registration Not Successfull!";
+         }
+
         }
     
     }
     else {
-         $message = "Enter Username and Password to Login";
+         $message = "Enter All Details";
         }
     if(isset($_SESSION["id"])) {
     header("Location:index.php");
@@ -31,7 +46,7 @@
 
         <link rel="stylesheet" type="text/css" href="../css/main.css">
 
-    <title>Login</title>
+    <title>Registration</title>
 
     <style type="text/css">
         .inp{
@@ -49,24 +64,30 @@
   <a href="../index.php"><img src="../img/logo_header.png"></a>
   <div class="header-right">
     <a href="../index.php">Home</a>
-    <a href="../about.html">About Us</a>
-    <a href="../contact.html">Contact Us</a>
+    <a href='login.php'>Login</a>
+    <a href='registration.php'>Register</a>
   </div>
 </div>
 <br>
 <div class="container">  
   <form id="contact" action="" method="post" enctype="multipart/form-data">
-    <h3>Login</h3><br>
+    <h3>Register</h3><br>
     <h4><div class="message"><?php if($message!="") { echo $message; } ?></div>
 </h4>
     <fieldset>
       <input placeholder="Username" class="inp" type="text" name="username" required autofocus>
     </fieldset>
     <fieldset>
+      <input placeholder="Email Address" class="inp" type="email" name="email" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Phone Number" class="inp" type="tel" pattern="^\d{10}$" name="phonenumber" required>
+    </fieldset>
+    <fieldset>
       <input placeholder="Password" class="inp" type="password" name="password" required>
     </fieldset>
     <fieldset>
-      <button name="submit" type="submit">Login</button>
+      <button name="submit" type="submit">Register</button>
     </fieldset>
 
   </form>

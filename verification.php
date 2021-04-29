@@ -11,10 +11,25 @@ $d2 = $_POST['d2'];
 $city = $_POST['city'];
 $hours = $_POST['hours'];
 
-$uname = $_POST['uname'];
-$uemail = $_POST['uemail'];
-$uphone = $_POST['uphone'];
-$upass = $_POST['upass'];
+if (!$_SESSION["id"]) {
+  $uname = $_POST['uname'];
+  $uemail = $_POST['uemail'];
+  $uphone = $_POST['uphone'];
+  $upass = $_POST['upass'];
+}
+else{
+    $tid = $_SESSION['id'];
+
+  $qr1t = "SELECT * FROM users WHERE uid = '$tid' ";
+  $qr1 = $db->query($qr1t);
+
+  while ( $row = mysqli_fetch_array($qr1) ) :
+    $uemail = $row["user_email"];
+  endwhile;
+}
+
+
+
 
 
 function generateOTP($n) { 
@@ -42,24 +57,22 @@ function generateOTP($n) {
 } 
 
 
+if (!$_SESSION["id"]) {
+  $insert_user_qr = "insert into users(user_name,user_email,user_number,user_pass) values ('$uname','$uemail','$uphone','$upass')";
 
-$insert_user_qr = "insert into users(user_name,user_email,user_number,user_pass) values ('$uname','$uemail','$uphone','$upass')";
-
-
-if ($db->query($insert_user_qr) === TRUE){
-
-    //echo "User Inserted";
-
-
-$sql = "SELECT * FROM users ORDER BY uid DESC LIMIT 1";
+  $sql = "SELECT * FROM users ORDER BY uid DESC LIMIT 1";
 $result = mysqli_query($db, $sql) or die( mysqli_error($db));
 
-    	while ( $row = mysqli_fetch_array($result) ) :
+      while ( $row = mysqli_fetch_array($result) ) :
 
-			$uid = $row['uid'];
-			//echo "User ID is : ".$uid;
+      $uid = $row['uid'];
 
-		endwhile;
+
+    endwhile;
+}
+else{
+  $uid = $_SESSION["id"];
+}
 
 
     	    $insert_booking_qr = "insert into bookings(uid,cid,city,booking_from,booking_to,total_hours,amount) values ('$uid','$cid','$city','$d1','$d2','$hours','$amount')";
@@ -102,10 +115,7 @@ $result = mysqli_query($db, $sql) or die( mysqli_error($db));
 
 
 
-}
 
-else
-	echo "User Not Inserted";
 
 
 

@@ -4,11 +4,11 @@
 
     if(isset($_POST['submit'])) {
         include_once("db_conn.php");
-        $result = mysqli_query($db,"SELECT * FROM login_user WHERE user_name='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+        $result = mysqli_query($db,"SELECT * FROM users WHERE user_name='" . $_POST["username"] . "' and user_pass = '". $_POST["password"]."'");
         $row  = mysqli_fetch_array($result);
         if(is_array($row)) {
-        $_SESSION["id"] = $row['id'];
-        $_SESSION["name"] = $row['name'];
+        $_SESSION["id"] = $row['uid'];
+        $_SESSION["name"] = $row['user_name'];
         } 
         else {
          $message = "Invalid Username or Password!";
@@ -49,8 +49,8 @@
   <a href="../index.php"><img src="../img/logo_header.png"></a>
   <div class="header-right">
     <a href="../index.php">Home</a>
-    <a href="../about.html">About Us</a>
-    <a href="../contact.html">Contact Us</a>
+    <a href='login.php'>Login</a>
+    <a href='registration.php'>Register</a>
   </div>
 </div>
 <br>
