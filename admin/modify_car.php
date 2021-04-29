@@ -15,7 +15,7 @@ if(!isset($_SESSION["name"])) {
 
 $cid = $_GET['id'];
 
-include_once("db_conn.php");
+include_once("../db_conn.php");
 $query = $db->query("SELECT * FROM cars WHERE cid = '$cid'");
 
 while ($row = mysqli_fetch_array($query)): 

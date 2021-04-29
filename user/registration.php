@@ -5,7 +5,7 @@
     if(isset($_POST['submit'])) {
 
 
-        include_once("db_conn.php");
+        include_once("../db_conn.php");
         $result = mysqli_query($db,"SELECT * FROM users WHERE user_name='" . $_POST["username"] . "' or user_email = '". $_POST["email"]."'");
         $row  = mysqli_fetch_array($result);
         if(is_array($row)) {

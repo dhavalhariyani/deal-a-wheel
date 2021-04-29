@@ -3,7 +3,7 @@
     $message="";
 
     if(isset($_POST['submit'])) {
-        include_once("db_conn.php");
+        include_once("../db_conn.php");
         $result = mysqli_query($db,"SELECT * FROM users WHERE user_name='" . $_POST["username"] . "' and user_pass = '". $_POST["password"]."'");
         $row  = mysqli_fetch_array($result);
         if(is_array($row)) {

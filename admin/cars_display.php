@@ -11,7 +11,7 @@ if(!isset($_SESSION["name"])) {
 }
 
 
-include_once("db_conn.php");
+include_once("../db_conn.php");
 
 
 ?>

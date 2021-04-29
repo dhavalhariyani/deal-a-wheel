@@ -4,7 +4,7 @@ session_start();
 $id = $_GET['id'];
 $action = $_GET['action'];
 
-include_once("db_conn.php");
+include_once("../db_conn.php");
 
 if ($action == "confirm") {
 	$qr = "UPDATE bookings SET status = '1' WHERE bid = '$id';";
