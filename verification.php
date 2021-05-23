@@ -2,7 +2,6 @@
 
 session_start();
 include_once("db_conn.php");
-include_once("mail.php");
 
 $cid = $_POST['cid'];
 $amount = $_POST['amount'];
@@ -32,29 +31,6 @@ else{
 
 
 
-function generateOTP($n) { 
-      
-    // Take a generator string which consist of 
-    // all numeric digits 
-    $generator = "1357902468"; 
-  
-    // Iterate for n-times and pick a single character 
-    // from generator and append it to $result 
-      
-    // Login for generating a random character from generator 
-    //     ---generate a random number 
-    //     ---take modulus of same with length of generator (say i) 
-    //     ---append the character at place (i) from generator to result 
-  
-    $result = ""; 
-  
-    for ($i = 1; $i <= $n; $i++) { 
-        $result .= substr($generator, (rand()%(strlen($generator))), 1); 
-    } 
-  
-    // Return result 
-    return $result; 
-} 
 
 
 if (!$_SESSION["id"]) {
@@ -102,75 +78,16 @@ else{
 
                 $quariy = $db->query($insert_otp_qr);
 
-                sendOPT($uemail,$otp);
-
+                header("Location:success.php");
 
 
     	    }
     	    else {
-    	    	//echo "Booking Not Done";
+    	    	echo "Booking Not Done";
     	    }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-
-    <title>Verification</title>
-  </head>
-  <body>
-
-<?php
-include("header.php");
-?>
-
-<div class="container">  
-  <form id="contact" action="success.php" method="post">
-    <h3>Verify Your Identity!</h3>
-    <h4>Enter The OTP We Have Sent You On Your E-Mail!</h4>
-    <fieldset>
-      <input placeholder="Enter OTP" type="text" name="userotp" required autofocus>
-    </fieldset>
-    <input type="hidden" name="uid" value="<?php echo $uid ?>">
-    <input type="hidden" name="uemail" value="<?php echo $uemail ?>">
-    <fieldset>
-      <button name="submit" type="submit">Submit</button>
-    </fieldset>
-  </form>
- 
-  
-</div>
- 
- <footer>
-  <?php
-    include("footer.php");
-  ?>
-  </div>
-
-</footer>
-
-  </body>
-</html>
