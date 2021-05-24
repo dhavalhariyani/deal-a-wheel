@@ -10,7 +10,7 @@ $d2 = $_POST['d2'];
 $city = $_POST['city'];
 $hours = $_POST['hours'];
 
-if (!$_SESSION["id"]) {
+if (!isset($_SESSION["id"])) {
   $uname = $_POST['uname'];
   $uemail = $_POST['uemail'];
   $uphone = $_POST['uphone'];
@@ -33,7 +33,7 @@ else{
 
 
 
-if (!$_SESSION["id"]) {
+if (!isset($_SESSION["id"])) {
   $insert_user_qr = "insert into users(user_name,user_email,user_number,user_pass) values ('$uname','$uemail','$uphone','$upass')";
 
   $sql = "SELECT * FROM users ORDER BY uid DESC LIMIT 1";
@@ -70,13 +70,6 @@ else{
 
     	    			$_SESSION['booking_id'] = $bid;
 
-
-                $n = 6; 
-                $otp = generateOTP($n);
-
-                $insert_otp_qr = "insert into otps(uid,otp) values ('$uid','$otp')";
-
-                $quariy = $db->query($insert_otp_qr);
 
                 header("Location:success.php");
 

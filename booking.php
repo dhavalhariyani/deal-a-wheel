@@ -16,7 +16,7 @@ $hours = $_POST['hours'];
 
 $qr = "SELECT * FROM cars WHERE cid = '$cid' ";
 
-if ($_SESSION["id"]) 
+if (isset($_SESSION["id"]))
 {
   $tid = $_SESSION['id'];
 
@@ -192,7 +192,7 @@ $f = 1;
               <div class="card">  
                  <?php
 
-                  if (!$_SESSION["id"]) {
+                  if (!isset($_SESSION["id"])) {
                      echo "<h3>Enter Your Details!</h3>";}
                      else
                       echo "<h3>Your Details!</h3>";
@@ -204,7 +204,7 @@ $f = 1;
                 <form action="verification.php" method="POST"> 
                   <?php
 
-                  if (!$_SESSION["id"]) {
+                  if (!isset($_SESSION["id"])) {
 
                   ?>
                   
