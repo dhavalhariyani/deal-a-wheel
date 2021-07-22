@@ -6,9 +6,13 @@
     
     include_once("mail.php");
     
-    $bid = $_SESSION['booking_id'];
-    
-    
+
+      
+    $qr = "SELECT bid FROM bookings ORDER BY bid DESC LIMIT 1";
+    $quariy = $db->query($qr);
+    while ( $row = mysqli_fetch_array($quariy) ) :
+      $bid = $row['bid'];
+    endwhile;
     
     $qr = "SELECT * FROM bookings WHERE bid = '$bid' ";
     $quariy = $db->query($qr);
