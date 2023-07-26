@@ -1,9 +1,6 @@
 # Deal-A-Wheel
 Deal-A-Wheel is a car rental website developed for academic project.
 
-## I have deployed this project on Heroku, you can check it out by following link below
-https://dealawheel.herokuapp.com/
-
 ## Technologies Used
 - HTML
 - CSS
